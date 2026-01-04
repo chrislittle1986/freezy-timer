@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# Freezy Timer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Ein Countdown-Timer im Graffiti Bubble-Style mit NYC Hintergrund. Gebaut mit React.
 
-## Available Scripts
+## Was ist das
 
-In the project directory, you can run:
+Ein Timer den ich gebaut hab um React zu lernen. Hat Schnellauswahl-Buttons für 5, 10, 15, 30 und 60 Minuten oder man kann sich ne eigene Zielzeit setzen.
 
-### `npm start`
+Das Design ist im Graffiti Bubble-Style gehalten mit dicken schwarzen Outlines und bunten Farben.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Brauchst Node.js und npm installiert.
+```bash
+git clone https://github.com/DEIN-USERNAME/freezy-timer.git
+cd freezy-timer
+npm install
+npm start
+```
 
-### `npm test`
+Dann aufm Browser auf localhost:3000 gehen.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+- Schnellauswahl-Buttons: 5, 10, 15, 30, 60 Minuten
+- Oder eigene Zielzeit eingeben
+- Countdown in Tagen, Stunden, Minuten, Sekunden
+- Start, Stop und Reset Buttons
+- Graffiti Bubble-Style Design
+- Responsive - funktioniert auch auf dem Handy
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Eigenes Hintergrundbild
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Wenn du dein eigenes Bild verwenden willst:
+1. Bild nach `src/` kopieren
+2. In `App.js` oben importieren: `import meinBild from './meinBild.jpg'`
+3. Fertig
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Build erstellen
+```bash
+npm run build
+```
 
-### `npm run eject`
+Erstellt nen `build` Ordner mit den fertigen Dateien die du auf nen Server hochladen kannst.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Tech Stack
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- React
+- CSS3
+- JavaScript
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Lizenz
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Mach damit was du willst.

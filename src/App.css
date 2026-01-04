@@ -1,38 +1,348 @@
-.App {
-  text-align: center;
+/* Basis-Styling für Body und HTML */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Arial Black', Arial, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+/* Hauptcontainer - Hintergrundbild wird jetzt über React inline-style gesetzt */
+.timer-container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 20px;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
 }
 
-.App-link {
-  color: #61dafb;
+/* Dunkler Overlay über dem Hintergrundbild für bessere Lesbarkeit */
+.timer-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 1;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Alle Kindelemente über dem Overlay */
+.timer-container>* {
+  position: relative;
+  z-index: 2;
+}
+
+/* BUBBLE-GRAFFITI-STYLE Titel */
+.graffiti-title {
+  font-size: 5rem;
+  font-weight: 900;
+  color: #ff6b35;
+  text-shadow:
+    -4px -4px 0 #000,
+    4px -4px 0 #000,
+    -4px 4px 0 #000,
+    4px 4px 0 #000,
+    -6px 0 0 #000,
+    6px 0 0 #000,
+    0 -6px 0 #000,
+    0 6px 0 #000,
+    8px 8px 0 #ff1744,
+    10px 10px 20px rgba(255, 107, 53, 0.8);
+  margin-bottom: 40px;
+  letter-spacing: 15px;
+  transform: rotate(-3deg);
+  animation: bubble-pulse 2s infinite;
+  border-radius: 50px;
+  padding: 10px 30px;
+  background: linear-gradient(145deg, #ff8c5a, #ff6b35);
+  border: 6px solid #000;
+}
+
+/* Bubble-Pulsieren-Animation */
+@keyframes bubble-pulse {
+
+  0%,
+  100% {
+    transform: rotate(-3deg) scale(1);
   }
-  to {
-    transform: rotate(360deg);
+
+  50% {
+    transform: rotate(-3deg) scale(1.05);
+  }
+}
+
+/* Schnellauswahl-Buttons */
+.quick-select {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.quick-btn {
+  padding: 15px 25px;
+  font-size: 1.2rem;
+  font-weight: 900;
+  background: linear-gradient(145deg, #00d4ff, #0099cc);
+  color: #000;
+  border: 4px solid #000;
+  border-radius: 20px;
+  cursor: pointer;
+  letter-spacing: 2px;
+  text-shadow:
+    -2px -2px 0 #fff,
+    2px -2px 0 #fff,
+    -2px 2px 0 #fff,
+    2px 2px 0 #fff;
+  box-shadow:
+    0 6px 0 #000,
+    0 8px 15px rgba(0, 0, 0, 0.6);
+  transition: all 0.2s ease;
+}
+
+.quick-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow:
+    0 9px 0 #000,
+    0 12px 20px rgba(0, 0, 0, 0.8);
+}
+
+.quick-btn:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow:
+    0 4px 0 #000,
+    0 6px 10px rgba(0, 0, 0, 0.6);
+}
+
+.quick-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Input-Sektion */
+.input-section {
+  background: rgba(0, 0, 0, 0.9);
+  padding: 30px;
+  border-radius: 25px;
+  border: 5px solid #ff6b35;
+  margin-bottom: 40px;
+  box-shadow:
+    0 0 30px rgba(255, 107, 53, 0.6),
+    inset 0 2px 10px rgba(255, 107, 53, 0.2);
+}
+
+.input-label {
+  display: block;
+  color: #ffd700;
+  font-size: 1.4rem;
+  font-weight: 900;
+  margin-bottom: 10px;
+  text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000,
+    4px 4px 0 #ff6b35;
+  letter-spacing: 3px;
+}
+
+.time-input {
+  padding: 15px;
+  font-size: 1.2rem;
+  border: 4px solid #ff1744;
+  border-radius: 15px;
+  background: #1a1a1a;
+  color: #fff;
+  width: 100%;
+  max-width: 300px;
+  box-shadow:
+    inset 0 2px 10px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(255, 23, 68, 0.5);
+  font-weight: bold;
+}
+
+.time-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Countdown-Display im Bubble-Graffiti-Style */
+.countdown-display {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.time-block {
+  background: linear-gradient(145deg, #2d2d2d, #1a1a1a);
+  padding: 30px 20px;
+  border-radius: 30px;
+  border: 6px solid #ff6b35;
+  box-shadow:
+    0 0 40px rgba(255, 107, 53, 0.8),
+    inset 0 2px 15px rgba(0, 0, 0, 0.8),
+    -4px -4px 0 #000,
+    4px 4px 0 #000;
+  min-width: 120px;
+  transform: rotate(-2deg);
+}
+
+.time-block:nth-child(even) {
+  transform: rotate(2deg);
+}
+
+/* Bubble-Style Zahlen */
+.time-number {
+  font-size: 4.5rem;
+  color: #ffd700;
+  font-weight: 900;
+  text-shadow:
+    -3px -3px 0 #000,
+    3px -3px 0 #000,
+    -3px 3px 0 #000,
+    3px 3px 0 #000,
+    -5px 0 0 #000,
+    5px 0 0 #000,
+    0 -5px 0 #000,
+    0 5px 0 #000,
+    6px 6px 0 #ff1744,
+    8px 8px 20px rgba(255, 215, 0, 0.8);
+  text-align: center;
+}
+
+.time-label {
+  font-size: 1.1rem;
+  color: #ff6b35;
+  font-weight: 900;
+  text-align: center;
+  margin-top: 10px;
+  letter-spacing: 4px;
+  text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000;
+}
+
+/* Bubble-Style Separator */
+.separator {
+  font-size: 4.5rem;
+  color: #ff1744;
+  font-weight: 900;
+  text-shadow:
+    -3px -3px 0 #000,
+    3px -3px 0 #000,
+    -3px 3px 0 #000,
+    3px 3px 0 #000,
+    5px 5px 0 #ffd700,
+    7px 7px 20px rgba(255, 23, 68, 0.8);
+}
+
+/* Button-Styling im Bubble-Graffiti-Style */
+.button-section {
+  display: flex;
+  gap: 20px;
+}
+
+.btn {
+  padding: 25px 50px;
+  font-size: 1.8rem;
+  font-weight: 900;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000;
+  transition: all 0.3s ease;
+  letter-spacing: 4px;
+  border: 5px solid #000;
+  box-shadow:
+    0 8px 0 #000,
+    0 12px 25px rgba(0, 0, 0, 0.8);
+}
+
+.btn:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow:
+    0 13px 0 #000,
+    0 18px 30px rgba(0, 0, 0, 0.9);
+}
+
+.btn:active {
+  transform: translateY(4px);
+  box-shadow:
+    0 4px 0 #000,
+    0 6px 15px rgba(0, 0, 0, 0.8);
+}
+
+.btn-start {
+  background: linear-gradient(145deg, #00ff00, #00dd00);
+  color: #000;
+}
+
+.btn-stop {
+  background: linear-gradient(145deg, #ff1744, #dd0000);
+  color: #fff;
+}
+
+.btn-reset {
+  background: linear-gradient(145deg, #ffd700, #ffbb00);
+  color: #000;
+}
+
+/* Responsive Design für kleinere Bildschirme */
+@media (max-width: 768px) {
+  .graffiti-title {
+    font-size: 3rem;
+    letter-spacing: 8px;
+  }
+
+  .quick-select {
+    gap: 10px;
+  }
+
+  .quick-btn {
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+
+  .countdown-display {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .time-block {
+    min-width: 80px;
+    padding: 20px 10px;
+  }
+
+  .time-number {
+    font-size: 3rem;
+  }
+
+  .separator {
+    font-size: 3rem;
+  }
+
+  .button-section {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    font-size: 1.5rem;
   }
 }
