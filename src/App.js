@@ -85,7 +85,7 @@ function GraffitiTimer() {
 
   return (
     <div className="timer-container" style={{ backgroundImage: `url(${nycity})` }}>
-      <h1 className="graffiti-title">FREEZY TIMER</h1>
+      <h1 className="graffiti-title">Jacob Geiler lehrer</h1>
 
       {/* NEU: Schnellauswahl-Buttons */}
       <div className="quick-select">
